@@ -6,10 +6,46 @@
         xmlns:local="clr-namespace:TimeAttack"
         mc:Ignorable="d"
         KeyDown="MainWindow_KeyDown"
-        Title="MainWindow" Height="350" Width="525">
+        Title="TimeAttack" Height="350" Width="525"
+        >
     <Grid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="200,234,0,0" VerticalAlignment="Top" Width="124" Height="37" Click="button_Click"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="62,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="50" Text="{Binding Path=MyValue}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Viewbox Grid.Row="0">
+                    <TextBlock x:Name="Team1"  HorizontalAlignment="Center" Margin="10,0,10,0" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="50" Text="Team #1" FontFamily="Courier New"/>
+                </Viewbox>
+                <Viewbox Grid.Row="1">
+                    <TextBlock x:Name="Player1"  HorizontalAlignment="Center" Margin="10,0,10,0" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="50" Text="{Binding Path=Player1String}" FontFamily="Courier New"/>
+                </Viewbox>
+            </Grid>
+        </Border>
+
+
+        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Viewbox Grid.Row="0">
+                    <TextBlock x:Name="Team2"  HorizontalAlignment="Center" Margin="10,0,10,0" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="50" Text="Team #2" FontFamily="Courier New"/>
+                </Viewbox>
+                <Viewbox Grid.Row="1">
+                    <TextBlock x:Name="Player2" HorizontalAlignment="Center" Margin="10,0,10,0" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="50" Text="{Binding Path=Player2String}" FontFamily="Courier New"/>
+                </Viewbox>
+            </Grid>
+        </Border>
+
+
 
     </Grid>
+    
 </Window>
