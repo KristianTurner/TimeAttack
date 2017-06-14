@@ -46,7 +46,7 @@ namespace TimeAttack
         private string _player1String;
         public string Player1String
         {
-            get => _player1String;
+            get { return _player1String; }
             set
             {
                 _player1String = value;
@@ -58,7 +58,9 @@ namespace TimeAttack
 
         public string Player2String
         {
-            get => player2string;
+            get {
+                return this.player2string;
+                }
             set
             {
                 player2string = value;
@@ -96,11 +98,11 @@ namespace TimeAttack
                                 System.Threading.Thread.Sleep(25);
                                 if (_player1Tag)
                                 {
-                                    Player1String = $"{_timeAttack.Elapsed.Seconds}";
+                                    Player1String = $"{_timeAttack.Elapsed.TotalSeconds:N0}";
                                 }
                                 if (_player2Tag)
                                 {
-                                    Player2String = $"{_timeAttack.Elapsed.Seconds}";
+                                    Player2String = $"{_timeAttack.Elapsed.TotalSeconds:N0}";
                                 }
                             }
                             _timeAttack.Stop();
