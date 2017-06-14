@@ -98,11 +98,11 @@ namespace TimeAttack
                                 System.Threading.Thread.Sleep(25);
                                 if (_player1Tag)
                                 {
-                                    Player1String = $"{_timeAttack.Elapsed.TotalSeconds:N0}";
+                                    Player1String = _timeAttack.Elapsed.TotalSeconds > 60 ? _timeAttack.Elapsed.ToString("m\\:ss") : $"{_timeAttack.Elapsed.Seconds}";
                                 }
                                 if (_player2Tag)
                                 {
-                                    Player2String = $"{_timeAttack.Elapsed.TotalSeconds:N0}";
+                                    Player2String = _timeAttack.Elapsed.TotalSeconds > 60 ? _timeAttack.Elapsed.ToString("m\\:ss") : $"{_timeAttack.Elapsed.Seconds}";
                                 }
                             }
                             _timeAttack.Stop();
@@ -122,20 +122,20 @@ namespace TimeAttack
 
                     break;
                 case Key.P:
-                    if (_running)
+                    if (_running && _player1Tag)
                     {
                         _player1Tag = false;
-                        Player1String = _timeAttack.Elapsed.ToString("s\\.ff");
+                        Player1String = _timeAttack.Elapsed.TotalSeconds > 60 ? _timeAttack.Elapsed.ToString("m\\:ss") : $"{_timeAttack.Elapsed.Seconds}";
                     }
 
 
                     break;
                     
                 case Key.O:
-                    if (_running)
+                    if (_running && _player2Tag)
                     {
                         _player2Tag = false;
-                        Player2String = _timeAttack.Elapsed.ToString("s\\.ff");
+                        Player2String = _timeAttack.Elapsed.TotalSeconds > 60 ? _timeAttack.Elapsed.ToString("m\\:ss") : $"{_timeAttack.Elapsed.Seconds}";
                     }
                     break;
                 default:
