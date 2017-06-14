@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:TimeAttack"
         mc:Ignorable="d"
         KeyDown="MainWindow_KeyDown"
+        WindowStyle="None"
+        WindowState="Maximized"
         Title="TimeAttack" Height="350" Width="525"
         >
     <Grid>
@@ -16,11 +18,12 @@
         <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2">
             <Grid >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="10*"/>
                 </Grid.RowDefinitions>
                 <Viewbox Grid.Row="0">
-                    <TextBlock x:Name="Team1"  HorizontalAlignment="Center" Margin="10,0,10,0" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="50" Text="Team #1" FontFamily="Courier New"/>
+                    <TextBox x:Name="BoxTeam1" Text="Team #1" BorderThickness="0"  FontFamily="Courier New"/>
+                    <!--<TextBlock x:Name="Team1"  HorizontalAlignment="Center" Margin="10,0,10,0" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="50" Text="Team #1" FontFamily="Courier New"/>-->
                 </Viewbox>
                 <Viewbox Grid.Row="1">
                     <TextBlock x:Name="Player1"  HorizontalAlignment="Center" Margin="10,0,10,0" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="50" Text="{Binding Path=Player1String}" FontFamily="Courier New"/>
@@ -32,11 +35,12 @@
         <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition />
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="10*"/>
                 </Grid.RowDefinitions>
                 <Viewbox Grid.Row="0">
-                    <TextBlock x:Name="Team2"  HorizontalAlignment="Center" Margin="10,0,10,0" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="50" Text="Team #2" FontFamily="Courier New"/>
+                    <!--<TextBlock x:Name="Team2"  HorizontalAlignment="Center" Margin="10,0,10,0" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="50" Text="Team #2" FontFamily="Courier New"/> -->
+                    <TextBox Text="Team #2" BorderThickness="0"  FontFamily="Courier New"/>
                 </Viewbox>
                 <Viewbox Grid.Row="1">
                     <TextBlock x:Name="Player2" HorizontalAlignment="Center" Margin="10,0,10,0" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="50" Text="{Binding Path=Player2String}" FontFamily="Courier New"/>
