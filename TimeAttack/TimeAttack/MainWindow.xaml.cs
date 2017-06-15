@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -116,6 +117,14 @@ namespace TimeAttack
                     {
                         if (!_player1Tag && !_player2Tag)
                         {
+                            if (BoxTeam1.Text != "Team #1" || BoxTeam2.Text != "Team #2")
+                            {
+                                WriteLog(Player1String, Player2String, BoxTeam1.Text, BoxTeam2.Text);
+                            } else
+                            {
+                                WriteLog(Player1String, Player2String);
+                            }
+                            
                             Player1String = "0";
                             Player2String = "0";
                             _running = false;
@@ -130,7 +139,6 @@ namespace TimeAttack
                         _player1Tag = false;
                         Player1String = _timeAttack.Elapsed.TotalSeconds > 60 ? _timeAttack.Elapsed.ToString("m\\:ss\\.f") : $"{ _timeAttack.Elapsed.TotalSeconds:N1}";
                     }
-
 
                     break;
                     
@@ -149,6 +157,40 @@ namespace TimeAttack
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void WriteLog(string Player1Result, string Player2Result, string Player1Name = "Team #1", string Player2Name = "Team #2")
+        {
+            string path = @"C:\tmp\Attempts.txt";
+            if (File.Exists(path))
+            {
+                try
+                {
+                    using (StreamWriter sw = File.AppendText(path))
+                    {
+                        sw.WriteLine($"{Player1Name}: {Player1Result} | {Player2Name}: {Player2Result}");                        
+                    }
+
+                }
+                catch (Exception)
+                {                    
+                    MessageBox.Show("Could not save log", "Error", MessageBoxButton.OK);
+                }
+            }
+            else
+            {
+                try
+                {
+                    using (StreamWriter sw = File.CreateText(path))
+                    {
+                        sw.WriteLine($"{Player1Name}: {Player1Result} | {Player2Name}: {Player2Result}");
+                    }
+                } catch (Exception)
+                {                    
+                    MessageBox.Show("Could not save log", "Error", MessageBoxButton.OK);
+                }
+
+            }
         }
     }
 }
