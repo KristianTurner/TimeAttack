@@ -84,6 +84,9 @@ namespace TimeAttack
         {
             switch (e.Key)
             {
+                case Key.Enter:
+                    label.Focus();
+                    break;
                 case Key.Space:
                     if (!_running)
                     {
@@ -125,7 +128,7 @@ namespace TimeAttack
                     if (_running && _player1Tag)
                     {
                         _player1Tag = false;
-                        Player1String = _timeAttack.Elapsed.TotalSeconds > 60 ? _timeAttack.Elapsed.ToString("m\\:ss") : $"{_timeAttack.Elapsed.Seconds}";
+                        Player1String = _timeAttack.Elapsed.TotalSeconds > 60 ? _timeAttack.Elapsed.ToString("m\\:ss\\.f") : $"{ _timeAttack.Elapsed.TotalSeconds:N1}";
                     }
 
 
@@ -135,12 +138,17 @@ namespace TimeAttack
                     if (_running && _player2Tag)
                     {
                         _player2Tag = false;
-                        Player2String = _timeAttack.Elapsed.TotalSeconds > 60 ? _timeAttack.Elapsed.ToString("m\\:ss") : $"{_timeAttack.Elapsed.Seconds}";
+                        Player2String = _timeAttack.Elapsed.TotalSeconds > 60 ? _timeAttack.Elapsed.ToString("m\\:ss\\.f") : $"{ _timeAttack.Elapsed.TotalSeconds:N1}";
                     }
                     break;
                 default:
                     break;
             }
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
