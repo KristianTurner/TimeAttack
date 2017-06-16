@@ -117,14 +117,7 @@ namespace TimeAttack
                     {
                         if (!_player1Tag && !_player2Tag)
                         {
-                            if (BoxTeam1.Text != "Team #1" || BoxTeam2.Text != "Team #2")
-                            {
-                                WriteLog(Player1String, Player2String, BoxTeam1.Text, BoxTeam2.Text);
-                            } else
-                            {
-                                WriteLog(Player1String, Player2String);
-                            }
-                            
+                            WriteLog(Player1String, Player2String, BoxTeam1.Text, BoxTeam2.Text);                            
                             Player1String = "0";
                             Player2String = "0";
                             _running = false;
@@ -161,14 +154,19 @@ namespace TimeAttack
 
         private void WriteLog(string Player1Result, string Player2Result, string Player1Name = "Team #1", string Player2Name = "Team #2")
         {
-            string path = @"C:\tmp\Attempts.txt";
-            if (File.Exists(path))
+            string path = @"C:\tmp\";
+            string filePath = path + "Attempts.txt";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            if (File.Exists(filePath))
             {
                 try
                 {
-                    using (StreamWriter sw = File.AppendText(path))
+                    using (StreamWriter sw = File.AppendText(filePath))
                     {
-                        sw.WriteLine($"{Player1Name}: {Player1Result} | {Player2Name}: {Player2Result}");                        
+                        sw.WriteLine($"{DateTime.Now}# { Player1Name}: {Player1Result} | {Player2Name}: {Player2Result}");                        
                     }
 
                 }
@@ -181,9 +179,9 @@ namespace TimeAttack
             {
                 try
                 {
-                    using (StreamWriter sw = File.CreateText(path))
+                    using (StreamWriter sw = File.CreateText(filePath))
                     {
-                        sw.WriteLine($"{Player1Name}: {Player1Result} | {Player2Name}: {Player2Result}");
+                        sw.WriteLine($"{DateTime.Now}# {Player1Name}: {Player1Result} | {Player2Name}: {Player2Result}");
                     }
                 } catch (Exception)
                 {                    
@@ -191,6 +189,15 @@ namespace TimeAttack
                 }
 
             }
+        }
+
+        private void label1_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Player1String != "0" || Player2String != "0")
+            {
+                WriteLog(Player1String, Player2String, BoxTeam1.Text, BoxTeam2.Text);
+            }
+            Application.Current.Shutdown();
         }
     }
 }
